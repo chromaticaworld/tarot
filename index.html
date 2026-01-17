@@ -267,7 +267,7 @@
 <body>
 
     <div class="badge-21">
-        <img src="Frame 13.png" alt="Око">
+        <img src="frame-13.webp" alt="Око" loading="lazy">
     </div>
     
     <h1 class="gold-text">Сайт гаданий дениса э</h1>
@@ -287,7 +287,7 @@
     <div id="cards-grid"></div>
 
     <div id="result-section">
-        <img src="" alt="Card Image" id="resultImg" class="result-image">
+        <img src="" alt="Card Image" id="resultImg" class="result-image" loading="lazy">
         
         <div class="gold-text tarot-name" id="cardName"></div>
         <div class="gold-text answer-text" id="answerText"></div>
@@ -301,18 +301,18 @@
 
     <script>
         const tarotDeck = [
-            { id: 1,  image: "Frame 1.png",  name: "Чоп Хо", result: "НЕТ", desc: "Древний закон Чоп Хо непоколебим. Твоя истинная цель лежит на другом пути кхия эссайлума." },
-            { id: 2,  image: "Frame 3.png",  name: "Смерть", result: "НЕТ", desc: "Цикл еще не завершен. Сейчас не время для финала, наберись терпения, ведь трансформация еще впереди" },
-            { id: 3,  image: "Frame 2.png",  name: "Стражница", result: "...", desc: "她守护着你的道路。 现在还不是答案的时候，相信你的直觉。" },
-            { id: 4,  image: "Frame 10.png", name: "Айджибол", result: "...", desc: "*закадровый смех*" },
-            { id: 5,  image: "Frame 5.png",  name: "Верховная", result: "ДА", desc: "Слушай своё сердце, оно тебя не обманет. "},
-            { id: 6,  image: "Frame 6.png",  name: "Царица", result: "ДА", desc: "Ты заслуживаешь лучшего по праву рождения. Вселенная и Буздяк склоняется перед твоим желанием." },
-            { id: 7,  image: "Frame 8.png",  name: "Луна", result: "ДА", desc: "Всё тайной станет явным. Поганое станет ясным с тобой. То, что казалось невозможным, случится под покровом ночи." },
-            { id: 8,  image: "Frame 7.png",  name: "Отшельник", result: "НЕТ", desc: "бляяяяять, чел, возьми паузу. Советую уйти в тень..." },
-            { id: 9,  image: "Frame 9.png",  name: "Всевидящая", result: "ДА", desc: "Твой путь озарён и впереди тебя ждет взрыв победы." },
-            { id: 10, image: "Frame 4.png",  name: "Справедливость", result: "50/50", desc: "Все зависит от твоей честности перед собой." },
-            { id: 11, image: "Frame 11.png", name: "Звезда", result: "ДА", desc: "Твоя мечта обязательно сбудется. Верь и действуй." },
-            { id: 12, image: "Frame 12.png", name: "Суд", result: "ДА", desc: "Час настал. Космический приговор в твою пользу. Время собирать плоды." }
+            { id: 1,  image: "frame-1.webp",  name: "Чоп Хо", result: "НЕТ", desc: "Древний закон Чоп Хо непоколебим. Твоя истинная цель лежит на другом пути кхия эссайлума." },
+            { id: 2,  image: "frame-3.webp",  name: "Смерть", result: "НЕТ", desc: "Цикл еще не завершен. Сейчас не время для финала, наберись терпения, ведь трансформация еще впереди" },
+            { id: 3,  image: "frame-2.webp",  name: "Стражница", result: "...", desc: "她守护着你的道路。 现在还不是答案的时候，相信你的直觉。" },
+            { id: 4,  image: "frame-10.webp", name: "Айджибол", result: "...", desc: "*закадровый смех*" },
+            { id: 5,  image: "frame-5.webp",  name: "Верховная", result: "ДА", desc: "Слушай своё сердце, оно тебя не обманет. "},
+            { id: 6,  image: "frame-6.webp",  name: "Царица", result: "ДА", desc: "Ты заслуживаешь лучшего по праву рождения. Вселенная и Буздяк склоняется перед твоим желанием." },
+            { id: 7,  image: "frame-8.webp",  name: "Луна", result: "ДА", desc: "Всё тайной станет явным. Поганое станет ясным с тобой. То, что казалось невозможным, случится под покровом ночи." },
+            { id: 8,  image: "frame-7.webp",  name: "Отшельник", result: "НЕТ", desc: "бляяяяять, чел, возьми паузу. Советую уйти в тень..." },
+            { id: 9,  image: "frame-9.webp",  name: "Всевидящая", result: "ДА", desc: "Твой путь озарён и впереди тебя ждет взрыв победы." },
+            { id: 10, image: "frame-4.webp",  name: "Справедливость", result: "50/50", desc: "Все зависит от твоей честности перед собой." },
+            { id: 11, image: "frame-11.webp", name: "Звезда", result: "ДА", desc: "Твоя мечта обязательно сбудется. Верь и действуй." },
+            { id: 12, image: "frame-12.webp", name: "Суд", result: "ДА", desc: "Час настал. Космический приговор в твою пользу. Время собирать плоды." }
         ];
 
         const inputSection = document.getElementById('input-section');
@@ -320,6 +320,17 @@
         const resultSection = document.getElementById('result-section');
         const questionInput = document.getElementById('questionInput');
         let shuffledDeck = [];
+        let imagesPreloaded = false;
+        function preloadImages() {
+    if (imagesPreloaded) return;
+
+    tarotDeck.forEach(card => {
+        const img = new Image();
+        img.src = card.image;
+    });
+
+    imagesPreloaded = true;
+}
 
         function startDivination() {
             if (questionInput.value.trim() === "") {
@@ -327,7 +338,7 @@
                 setTimeout(() => questionInput.style.border = "1px solid #bf953f", 500);
                 return;
             }
-
+            preloadImages();
             inputSection.style.display = 'none';
             document.querySelector('.badge-21').style.display = 'none';
             document.querySelector('.astro-intro').style.display = 'none';
