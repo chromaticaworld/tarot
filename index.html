@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всевидящее око Людмилы Давиденко</title>
+    <style>
+        /* --- СТИЛИ (CSS) --- */
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            color: #d4af37;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+       .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .badge-21 {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #bf953f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 30px rgba(191, 149, 63, 0.4), inset 0 0 20px rgba(191, 149, 63, 0.2);
+            background: #000;
+            animation: pulse 3s infinite ease-in-out;
+            overflow: hidden; 
+        }
+
+        .badge-21 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 30px rgba(191, 149, 63, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(191, 149, 63, 0.7); }
+            100% { box-shadow: 0 0 30px rgba(191, 149, 63, 0.4); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .astro-intro {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            color: #fcf6ba;
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.5;
+            text-shadow: 0 0 10px rgba(191, 149, 63, 0.3);
+        }
+
+        #input-section {
+            width: 100%;
+            max-width: 500px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        p.instruction {
+            color: #bf953f;
+            font-weight: 300;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 15px;
+            border: 1px solid #bf953f;
+            background: #0a0a0a;
+            color: #fcf6ba;
+            border-radius: 8px;
+            outline: none;
+            font-size: 18px;
+            font-family: inherit;
+            box-shadow: 0 0 15px rgba(191, 149, 63, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 0 20px rgba(191, 149, 63, 0.4);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #bf953f);
+            background-size: 200% auto;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.5s;
+            box-shadow: 0 0 20px rgba(191, 149, 63, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button:hover {
+            background-position: right center;
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(191, 149, 63, 0.6);
+        }
+
+        #cards-grid {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card {
+            aspect-ratio: 360 / 615;
+            width: 100%;
+            background: #050505;
+            border: 1px solid #bf953f;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #fcf6ba;
+            box-shadow: 0 0 25px rgba(191, 149, 63, 0.4);
+        }
+
+        .card::after {
+            content: "✦";
+            background: linear-gradient(to bottom, #bf953f, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 40px;
+        }
+
+        #result-section {
+            display: none;
+            width: 100%;
+            max-width: 500px;
+            animation: fadeIn 1s ease;
+            border: 1px solid #333;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            box-sizing: border-box;
+        }
+
+        .result-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #bf953f;
+            box-shadow: 0 0 30px rgba(191, 149, 63, 0.3);
+            margin-bottom: 25px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tarot-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .answer-text {
+            font-size: 3rem;
+            margin: 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            border: 1px solid #bf953f;
+            color: #bf953f;
+            box-shadow: none;
+            font-size: 14px;
+            padding: 12px 25px;
+        }
+        
+        .secondary-btn:hover {
+            background: rgba(191, 149, 63, 0.2);
+            color: #fcf6ba;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .badge-21 { width: 100px; height: 100px; } 
+            .astro-intro { font-size: 1rem; padding: 0 10px; margin-bottom: 30px; }
+            #cards-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .card::after { font-size: 24px; }
+            #result-section { padding: 20px; }
+            .answer-text { font-size: 2.5rem; }
+            .tarot-name { font-size: 1.5rem; }
+            .btn-group { width: 100%; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="badge-21">
+        <img src="Frame 13.png" alt="Око">
+    </div>
+    
+    <h1 class="gold-text">Сайт гаданий дениса э</h1>
+    
+    <div class="astro-intro">
+        В 21 год космические меридианы сходятся в одной точке. 
+        <br>Именно сегодня Вселенная обязана ответить на твой главный вопрос.
+    </div>
+
+    <div id="input-section">
+        <p class="instruction">Введи вопрос, который волнует тебя больше всего, но помни, что ответ будет да или нет.</p>
+        <input type="text" id="questionInput" placeholder="Вопрос Вселенной..." autocomplete="off">
+        <br>
+        <button onclick="startDivination()">Узнать судьбу</button>
+    </div>
+
+    <div id="cards-grid"></div>
+
+    <div id="result-section">
+        <img src="" alt="Card Image" id="resultImg" class="result-image">
+        
+        <div class="gold-text tarot-name" id="cardName"></div>
+        <div class="gold-text answer-text" id="answerText"></div>
+        <div class="description" id="cardDesc"></div>
+        
+        <div class="btn-group">
+            <button class="secondary-btn" onclick="backToGrid()">Выбрать другую карту</button>
+            <button onclick="resetApp()">Новый вопрос</button>
+        </div>
+    </div>
+
+    <script>
+        const tarotDeck = [
+            { id: 1,  image: "Frame 1.png",  name: "Чоп Хо", result: "НЕТ", desc: "Древний закон Чоп Хо непоколебим. Твоя истинная цель лежит на другом пути кхия эссайлума." },
+            { id: 2,  image: "Frame 3.png",  name: "Смерть", result: "НЕТ", desc: "Цикл еще не завершен. Сейчас не время для финала, наберись терпения, ведь трансформация еще впереди" },
+            { id: 3,  image: "Frame 2.png",  name: "Стражница", result: "...", desc: "她守护着你的道路。 现在还不是答案的时候，相信你的直觉。" },
+            { id: 4,  image: "Frame 10.png", name: "Айджибол", result: "...", desc: "*закадровый смех*" },
+            { id: 5,  image: "Frame 5.png",  name: "Верховная", result: "ДА", desc: "Слушай своё сердце, оно тебя не обманет. "},
+            { id: 6,  image: "Frame 6.png",  name: "Царица", result: "ДА", desc: "Ты заслуживаешь лучшего по праву рождения. Вселенная и Буздяк склоняется перед твоим желанием." },
+            { id: 7,  image: "Frame 8.png",  name: "Луна", result: "ДА", desc: "Всё тайной станет явным. Поганое станет ясным с тобой. То, что казалось невозможным, случится под покровом ночи." },
+            { id: 8,  image: "Frame 7.png",  name: "Отшельник", result: "НЕТ", desc: "бляяяяять, чел, возьми паузу. Советую уйти в тень..." },
+            { id: 9,  image: "Frame 9.png",  name: "Всевидящая", result: "ДА", desc: "Твой путь озарён и впереди тебя ждет взрыв победы." },
+            { id: 10, image: "Frame 4.png",  name: "Справедливость", result: "50/50", desc: "Все зависит от твоей честности перед собой." },
+            { id: 11, image: "Frame 11.png", name: "Звезда", result: "ДА", desc: "Твоя мечта обязательно сбудется. Верь и действуй." },
+            { id: 12, image: "Frame 12.png", name: "Суд", result: "ДА", desc: "Час настал. Космический приговор в твою пользу. Время собирать плоды." }
+        ];
+
+        const inputSection = document.getElementById('input-section');
+        const cardsGrid = document.getElementById('cards-grid');
+        const resultSection = document.getElementById('result-section');
+        const questionInput = document.getElementById('questionInput');
+        let shuffledDeck = [];
+
+        function startDivination() {
+            if (questionInput.value.trim() === "") {
+                questionInput.style.border = "1px solid red";
+                setTimeout(() => questionInput.style.border = "1px solid #bf953f", 500);
+                return;
+            }
+
+            inputSection.style.display = 'none';
+            document.querySelector('.badge-21').style.display = 'none';
+            document.querySelector('.astro-intro').style.display = 'none';
+            
+            shuffledDeck = [...tarotDeck].sort(() => Math.random() - 0.5);
+
+            cardsGrid.style.display = 'grid';
+            cardsGrid.innerHTML = '';
+            
+            shuffledDeck.forEach(cardData => {
+                let cardDiv = document.createElement('div');
+                cardDiv.className = 'card';
+                cardDiv.onclick = () => revealCard(cardData);
+                cardsGrid.appendChild(cardDiv);
+            });
+        }
+
+        function revealCard(cardData) {
+            cardsGrid.style.display = 'none';
+            resultSection.style.display = 'block';
+
+            document.getElementById('resultImg').src = cardData.image;
+            document.getElementById('cardName').innerText = cardData.name;
+            document.getElementById('answerText').innerText = cardData.result;
+            document.getElementById('cardDesc').innerText = cardData.desc;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToGrid() {
+            resultSection.style.display = 'none';
+            cardsGrid.style.display = 'grid';
+        }
+
+        function resetApp() {
+            questionInput.value = "";
+            resultSection.style.display = 'none';
+            cardsGrid.style.display = 'none';
+            
+            inputSection.style.display = 'block';
+            document.querySelector('.badge-21').style.display = 'flex';
+            document.querySelector('.astro-intro').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
